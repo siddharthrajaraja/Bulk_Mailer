@@ -3,7 +3,7 @@ var fs =require('fs')
 
 var storage =  multer.diskStorage({
     destination: async (req, file, cb)=> {
-       
+        
         var directory='./assets/uploads/'
         if(!fs.existsSync(directory))
             {
@@ -17,10 +17,19 @@ var storage =  multer.diskStorage({
      },
     
      filename: async function (req, file, cb){
-        file.originalname='emailList1.csv'
-        req.body['latestFile']=file.originalname
+
+        if(file.fieldname=='emailBody'){
+          file.originalname='emailBody.txt'
+          req.body['latestBody']=file.originalname 
+        }
+        else{
+          file.originalname='emailList1.csv'
+          req.body['latestFile']=file.originalname
+        
+        }
         cb(null,file.originalname);
      }
+     
   })
 
 

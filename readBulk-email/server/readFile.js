@@ -10,6 +10,7 @@ module.exports.addToRMQ=async(filePath,emailBody)=>{
     var soltns=await fs.createReadStream(filePath)
     .pipe(csvParser())
     .on('data',(data)=>{
+
         data['emailBody']=emailBody;
         //console.log(data)
         

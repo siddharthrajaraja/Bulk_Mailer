@@ -3,7 +3,7 @@ var dotenv=require('dotenv').config()
 var app=new express()
 var cors=require('cors')
 var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var urlencodedParser = bodyParser.urlencoded({ extended: false});
 let jsonParser=require('body-parser').json()
 
 app.set('view engine','ejs');
@@ -16,7 +16,14 @@ var {dashboard}=require('./server/dashboard')
 var {uploads}=require('./Multer/uploadFile')
 var {pingToRMQ}=require('./server/pingToRMQ')
 app.get('/',dashboard)
-app.post('/uploads',uploads.array('emailList',1),pingToRMQ)
+
+app.post
+    ('/uploads',uploads.fields(
+        [
+            { name:'emailList',maxCount:1  },
+            { name:'emailBody',maxCount:1  }
+        ]),pingToRMQ
+    )
 
 app.listen(8500 || process.env.PORT,()=>{
     console.log(`Connected to Web-Server at ${process.env.PORT}  PORT`)

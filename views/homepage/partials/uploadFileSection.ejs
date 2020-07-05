@@ -18,11 +18,11 @@
                     <div class="col s6">
                         <div class="file-field input-field">
                             <div class="btn black">
-                                <span> <i class="material-icons">edit</i> </span>
+                                <span> <i class="material-icons">attach_file</i> </span>
                                 <input type="file" accept=".csv" name='emailList' id='emailList' >
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path validate" placeholder="Click to Load File" type="text">
+                                <input class="file-path validate" placeholder="Load Email-IDs" type="text">
                             </div>
                         </div>
                         <br>
@@ -39,13 +39,45 @@
             </div>
             
 
-            <div class="input-field col s12 mailBody">
-                <textarea id='emailBody' name='emailBody' class="materialize-textarea"></textarea>
-                <label for="textarea1">Body of Email</label>
+            <div class="container bodyChoices">
+
+                <!-- Switch -->
+                <center>
+                    <div class="switch">
+                        <label>
+                        Manual
+                        <input type="checkbox" id='switcher' onchange="switching()">
+                        <span class="lever"></span>
+                        File Upload
+                        </label>
+                    </div>
+                </center>
+
+                <div class="input-field col s12 manualBody">
+                    <textarea id='emailBody' name='manualEmailBody' class="materialize-textarea"></textarea>
+                    <label for="textarea1">Body of Email</label>
+                    
+                </div>
+
+                <div class="file-field input-field fileBody">
+                    <div class="btn black">
+                        <span> <i class="material-icons">attach_file</i> </span>
+                        <input type="file" accept=".txt" name='emailBody' id='emailBody' >
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" placeholder="Load Email-Body" type="text">
+                    </div>
+                </div>
+                
+
+
+
                 
             </div>
+
+                <br>
                 
-                <button class="black btn submit" type="submit" style="margin-left:45%" >Submit</button>
+                <button class="black btn submit" type="submit" style="float:right" >Submit</button>
                 <br> <br>
             
             </div>
@@ -57,7 +89,24 @@
         window.location='/'
             
     }
-    
+    var switching=()=>{
+        var choice=document.getElementById('switcher')
+        console.log(choice.checked)
+        if(choice.checked){
+            document.getElementsByClassName('fileBody')[0].style.display='block';
+            document.getElementsByClassName('manualBody')[0].style.display='none';
+            
+        }
+        else{
+            
+            document.getElementsByClassName('fileBody')[0].style.display='none';
+            document.getElementsByClassName('manualBody')[0].style.display='block';
+            
+
+        }
+        
+
+    }
 </script>
 
 

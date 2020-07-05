@@ -3,7 +3,7 @@
     padding: 1%;
     margin-top:2%;
 }
-.btn{
+.btn {
     margin: auto;
 }
 .title{
@@ -18,3 +18,10 @@
     margin: auto;
 }
 
+.bodyChoices{
+    border: solid black;
+}
+
+.fileBody{
+    display:none;
+}
